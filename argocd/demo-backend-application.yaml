@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/subhdhal/istio-handson.git
+    targetRevision: HEAD
+    path: demo-backend
+    helm:
+      releaseName: demo-backend
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

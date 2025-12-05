@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: backend
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+    - {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: v1
+          weight: 50
+        - destination:
+            host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: v2
+          weight: 50
+

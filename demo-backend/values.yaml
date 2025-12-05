@@ -1,0 +1,11 @@
+replicaCounts:
+  v1: 3
+  v2: 2
+image:
+  repository: subhadhal/order-service
+  tag: "v1"
+ports:
+  containerPort: 8000
+service: 
+  name: backend
+  port: 80

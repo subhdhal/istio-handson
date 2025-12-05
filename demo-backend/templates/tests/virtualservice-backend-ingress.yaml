@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: backend-ingress
+  namespace: {{ .Release.Namespace }}
+spec:
+  hosts:
+    - "*"   # (for demo)
+  gateways:
+    - backend-gateway
+  http:
+    - route:
+        - destination:
+            host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: v1
+          weight: 50
+        - destination:
+            host: {{ .Values.service.name }}.{{ .Release.Namespace }}.svc.cluster.local
+            subset: v2
+          weight: 50
