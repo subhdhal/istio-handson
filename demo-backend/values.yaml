@@ -1,6 +1,6 @@
 replicaCounts:
-  v1: 3
-  v2: 2
+  v1: 4
+  v2: 3
 image:
   repository: subhadhal/order-service
   tag: "v1"
